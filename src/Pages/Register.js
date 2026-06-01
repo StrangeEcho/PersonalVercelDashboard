@@ -2,34 +2,36 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 
-export default function Login() {
+export default function Register() {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [token, setToken] = useState("");
 
-  async function login() {
+  async function register() {
     try {
-      const response = await fetch("http://localhost:5000/login", {
+      const response = await fetch("http://localhost:5000/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
           email,
-          password
+          password,
+          token
         })
       });
 
       const data = await response.json();
 
       if (!data.success) {
-        alert(data.message || "Login failed.");
+        alert(data.message || "Registration failed.");
         return;
       }
 
-      localStorage.setItem("userId", data.userId);
-      navigate("/dashboard");
+      alert("Registration successful.");
+      navigate("/");
     } catch (err) {
       alert("Could not connect to server.");
     }
@@ -37,9 +39,14 @@ export default function Login() {
 
   return (
     <div className="login-page">
-      <h1>Login</h1>
+      <h1>Register</h1>
 
-      <p>Log in to view your personal Vercel dashboard.</p>
+      <p>Create an account and save your Vercel API token.</p>
+
+      <p>
+        Password must be 8+ characters, include 1 uppercase letter,
+        and 1 number.
+      </p>
 
       <input
         placeholder="Email"
@@ -52,10 +59,16 @@ export default function Login() {
         onChange={(e) => setPassword(e.target.value)}
       />
 
-      <button onClick={login}>Login</button>
+      <input
+        type="password"
+        placeholder="Vercel API Token"
+        onChange={(e) => setToken(e.target.value)}
+      />
 
-      <button onClick={() => navigate("/register")}>
-        Register
+      <button onClick={register}>Register</button>
+
+      <button onClick={() => navigate("/")}>
+        Back to Login
       </button>
     </div>
   );
