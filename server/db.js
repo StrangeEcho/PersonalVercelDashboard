@@ -17,27 +17,13 @@ db.serialize(() => {
     created_at TEXT DEFAULT CURRENT_TIMESTAMP
   )`);
 
-  db.run(`CREATE TABLE IF NOT EXISTS activity_logs (
+  db.run(`CREATE TABLE IF NOT EXISTS project_notes (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id INTEGER,
-    action TEXT,
-    created_at TEXT DEFAULT CURRENT_TIMESTAMP
-  )`);
-
-  db.run(`CREATE TABLE IF NOT EXISTS cached_projects (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id INTEGER,
-    project_id TEXT,
-    name TEXT,
-    framework TEXT
-  )`);
-
-  db.run(`CREATE TABLE IF NOT EXISTS cached_deployments (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    user_id INTEGER,
-    deployment_id TEXT,
-    status TEXT,
-    created_at TEXT
+    user_id INTEGER NOT NULL,
+    project_id TEXT NOT NULL,
+    project_name TEXT NOT NULL,
+    note TEXT NOT NULL,
+    status TEXT DEFAULT 'Active'
   )`);
 });
 

@@ -13,6 +13,7 @@ import Projects from "./Pages/Projects";
 import Deployments from "./Pages/Deployments";
 import Insights from "./Pages/Insights";
 import UserSettings from "./Pages/UserSettings";
+import "./styles/app.css";
 
 function Navigation() {
   const navigate = useNavigate();
@@ -23,13 +24,17 @@ function Navigation() {
   }
 
   return (
-    <nav>
-      <Link to="/dashboard">Dashboard</Link>{" | "}
-      <Link to="/projects">Projects</Link>{" | "}
-      <Link to="/deployments">Deployments</Link>{" | "}
-      <Link to="/insights">Insights</Link>{" | "}
-      <Link to="/settings">User Settings</Link>{" | "}
-      <button onClick={logout}>Logout</button>
+    <nav className="navbar">
+      <div className="nav-title">Personal Vercel Dashboard</div>
+
+      <div className="nav-links">
+        <Link to="/dashboard">Dashboard</Link>
+        <Link to="/projects">Projects</Link>
+        <Link to="/deployments">Deployments</Link>
+        <Link to="/insights">Insights</Link>
+        <Link to="/settings">Settings</Link>
+        <button onClick={logout}>Logout</button>
+      </div>
     </nav>
   );
 }

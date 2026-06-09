@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import "../styles/deployments.css";
 
 export default function Deployments() {
   const [deployments, setDeployments] = useState([]);
@@ -9,68 +9,61 @@ export default function Deployments() {
 
   useEffect(() => {
     async function loadDeployments() {
-      try {
-        setError("");
+      const response = await fetch(`http://localhost:5000/vercel/deployments/${userId}`);
+      const data = await response.json();
 
-        const response = await fetch(
-          `http://localhost:5000/vercel/deployments/${userId}`
-        );
-
-        const data = await response.json();
-
-        if (!data.success) {
-          setError(data.message || "Failed to load deployments.");
-          return;
-        }
-
-        setDeployments(data.deployments);
-      } catch (err) {
-        setError("Could not connect to server.");
+      if (!data.success) {
+        setError(data.message || "Failed to load deployments.");
+        return;
       }
+
+      setDeployments(data.deployments);
     }
 
-    if (userId) {
-      loadDeployments();
-    }
+    if (userId) loadDeployments();
   }, [userId]);
 
   return (
     <div className="deployments-page">
-      <h1>Deployments</h1>
+      <section className="deployments-container">
+        <h1>Deployments</h1>
 
-      <p>This page shows recent deployment records from your Vercel account.</p>
+        <p className="page-description">
+          This page shows recent deployment records from your Vercel account.
+        </p>
 
-      {error && <p className="error">{error}</p>}
+        {error && <p className="error">{error}</p>}
 
-      <table>
-        <thead>
-          <tr>
-            <th>Project</th>
-            <th>Status</th>
-            <th>Created</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {deployments.length === 0 ? (
+        <table>
+          <thead>
             <tr>
-              <td colSpan="3">No deployments found.</td>
+              <th>Project</th>
+              <th>Status</th>
+              <th>Created</th>
             </tr>
-          ) : (
-            deployments.map((deployment) => (
-              <tr key={deployment.uid}>
-                <td>{deployment.name || "Unknown"}</td>
-                <td>{deployment.state || "Unknown"}</td>
-                <td>
-                  {deployment.createdAt
-                    ? new Date(deployment.createdAt).toLocaleString()
-                    : "Unknown"}
-                </td>
+          </thead>
+
+          <tbody>
+            {deployments.length === 0 ? (
+              <tr>
+                <td colSpan="3">No deployments found.</td>
               </tr>
-            ))
-          )}
-        </tbody>
-      </table>
+            ) : (
+              deployments.map((deployment) => (
+                <tr key={deployment.uid}>
+                  <td>{deployment.name || "Unknown"}</td>
+                  <td>{deployment.state || "Unknown"}</td>
+                  <td>
+                    {deployment.createdAt
+                      ? new Date(deployment.createdAt).toLocaleString()
+                      : "Unknown"}
+                  </td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </section>
     </div>
   );
 }

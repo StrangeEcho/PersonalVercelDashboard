@@ -1,0 +1,43 @@
+.settings-page {
+  padding: 32px;
+}
+
+.settings-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.settings-card {
+  background: white;
+  padding: 22px;
+  border-radius: 12px;
+  margin-bottom: 18px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+
+.settings-card input {
+  display: block;
+  width: 100%;
+  max-width: 420px;
+  padding: 10px;
+  margin: 9px 0;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+}
+
+.settings-card button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 9px 13px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.success {
+  color: #16a34a;
+}
+
+.error {
+  color: #dc2626;
+}

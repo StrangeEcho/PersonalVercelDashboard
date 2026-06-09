@@ -1,0 +1,90 @@
+.projects-page {
+  padding: 32px;
+}
+
+.projects-container {
+  max-width: 1150px;
+  margin: 0 auto;
+}
+
+.search-box {
+  background: white;
+  padding: 18px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+
+.search-box input {
+  padding: 10px;
+  width: 280px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  margin-right: 8px;
+}
+
+button {
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 9px 13px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-right: 6px;
+}
+
+.secondary-btn {
+  background: #6b7280;
+}
+
+.delete-btn {
+  background: #dc2626;
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.project-card {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+
+.note-box {
+  margin-top: 15px;
+  border-top: 1px solid #e5e7eb;
+  padding-top: 15px;
+}
+
+.note-box textarea {
+  width: 100%;
+  height: 75px;
+  padding: 10px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  resize: vertical;
+}
+
+.note-box select {
+  display: block;
+  margin: 10px 0;
+  padding: 8px;
+  border-radius: 8px;
+}
+
+.status {
+  display: inline-block;
+  background: #e0f2fe;
+  color: #0369a1;
+  padding: 5px 9px;
+  border-radius: 20px;
+  margin: 8px 0;
+}
+
+.error {
+  color: #dc2626;
+}
